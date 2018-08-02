@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import CardList from "./components/CardList";
 import SearchBox from "./components/SearchBox";
 
+// CSS
+import "./App.css";
+
 // Data
 import { robots } from "./data/robots";
 
@@ -23,6 +26,7 @@ class App extends Component {
         .toLowerCase()
         .includes(this.state.filter.toLowerCase());
     });
+
     return (
       <div className="tc">
         <h1>RoboFriends</h1>
