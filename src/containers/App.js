@@ -25,26 +25,23 @@ class App extends Component {
   };
 
   render() {
+    const { robots, filter } = this.state;
     // Compare the robots array and filter with state
-    const filteredSearch = this.state.robots.filter(robots => {
-      return robots.name
-        .toLowerCase()
-        .includes(this.state.filter.toLowerCase());
+    const filteredSearch = robots.filter(robot => {
+      return robot.name.toLowerCase().includes(filter.toLowerCase());
     });
 
-    if (this.state.robots.length === 0) {
-      return <h1 className="tc">Loading</h1>;
-    } else {
-      return (
-        <div className="tc">
-          <h1>RoboFriends</h1>
-          <SearchBox filter={this.onChangeHandler} value={this.state.filter} />
-          <Scroll>
-            <CardList robots={filteredSearch} />
-          </Scroll>
-        </div>
-      );
-    }
+    return !robots.length ? (
+      <h1 className="tc">Loading</h1>
+    ) : (
+      <div className="tc">
+        <h1>RoboFriends</h1>
+        <SearchBox filter={this.onChangeHandler} value={filter} />
+        <Scroll>
+          <CardList robots={filteredSearch} />
+        </Scroll>
+      </div>
+    );
   }
 }
 
