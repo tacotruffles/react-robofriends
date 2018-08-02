@@ -1,12 +1,14 @@
 import React from "react";
 
-const SearchBox = () => {
+const SearchBox = props => {
+  const { filter } = props;
   return (
     <div>
       <input
         className="pa3 ba b--green bg-lightest-blue"
         type="text"
         placeholder="Search..."
+        onChange={filter}
       />
     </div>
   );
