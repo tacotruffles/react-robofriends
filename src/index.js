@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
+// CSS
 import "tachyons";
 import "./index.css";
-import Card from "./components/Card";
+
+// Parent App
+import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(<Card />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();
