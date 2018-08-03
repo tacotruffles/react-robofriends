@@ -15,14 +15,14 @@ class App extends Component {
     this.props.onRequestRobots();
   }
   render() {
-    const { robots, loding, error, filter, onSearchChange } = this.props;
+    const { robots, loading, error, filter, onSearchChange } = this.props;
 
     // Compare the robots array and filter with props
     const filteredSearch = robots.filter(robot => {
       return robot.name.toLowerCase().includes(filter.toLowerCase());
     });
 
-    return !robots.length ? (
+    return loading ? (
       <h1 className="tc">Loading</h1>
     ) : (
       <div className="tc">
