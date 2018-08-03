@@ -1,11 +1,13 @@
+// Action Constants
 import * as actionTypes from "./actionTypes";
 
 const initialState = {
   robots: [],
-  filter: ""
+  filter: "",
+  loading: false
 };
 
-const searchReducer = (state = initialState, action = {}) => {
+export const searchReducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case actionTypes.CHANGE_SEARCH_FIELD:
       // alternative
@@ -19,4 +21,15 @@ const searchReducer = (state = initialState, action = {}) => {
   }
 };
 
-export default searchReducer;
+export const robotReducer = (state = initialState, action = {}) => {
+  switch (action.type) {
+    case actionTypes.REQUEST_ROBOTS_PENDING:
+      return Object.assign({}, state, { loading: true });
+    case actionTypes.REQUEST_ROBOTS_SUCCESS:
+      return Object.assign({}, state, { robots: action.payload, loading: false });
+    case actionTypes.REQUEST_ROBOTS_FAILED:
+      return Object.assign({}, state, { error: action.payload, loading: false });
+    default:
+      return state;
+  }
+};

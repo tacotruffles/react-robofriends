@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from "redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { Provider } from "react-redux";
-import searchReducer from "./store/reducers";
+import { searchReducer } from "./store/reducers";
 
 // CSS
 import "tachyons";
