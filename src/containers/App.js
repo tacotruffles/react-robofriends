@@ -11,20 +11,11 @@ import * as actions from "../store/actions";
 import "./App.css";
 
 class App extends Component {
-  state = {
-    robots: []
-  };
-
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(response => response.json())
-      .then(users => this.setState({ robots: users }));
-    //.catch(error => console.log(error));
+    this.props.onRequestRobots();
   }
-
   render() {
-    const { robots } = this.state;
-    const { filter, onSearchChange } = this.props;
+    const { robots, loding, error, filter, onSearchChange } = this.props;
 
     // Compare the robots array and filter with props
     const filteredSearch = robots.filter(robot => {
@@ -49,14 +40,17 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    filter: state.filter,
-    robots: state.robots
+    filter: state.searchReducer.filter,
+    robots: state.robotReducer.robots,
+    loading: state.robotReducer.loading,
+    error: state.robotReducer.error
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSearchChange: event => dispatch(actions.setSearchField(event.target.value))
+    onSearchChange: event => dispatch(actions.setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(actions.requestRobots())
   };
 };
 
