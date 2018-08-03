@@ -15,7 +15,7 @@ class App extends Component {
     this.props.onRequestRobots();
   }
   render() {
-    const { robots, loading, error, filter, onSearchChange } = this.props;
+    const { robots, loading, filter, onSearchChange } = this.props;
 
     // Compare the robots array and filter with props
     const filteredSearch = robots.filter(robot => {
