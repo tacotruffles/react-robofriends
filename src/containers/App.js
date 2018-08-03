@@ -4,13 +4,15 @@ import SearchBox from "../components/SearchBox";
 import Scroll from "../hoc/Scroll";
 import ErrorBoundary from "../components/ErrorBoundary";
 
+import { connect } from "react-redux";
+import * as actions from "../store/actions";
+
 // CSS
 import "./App.css";
 
 class App extends Component {
   state = {
-    robots: [],
-    filter: ""
+    robots: []
   };
 
   componentDidMount() {
@@ -20,14 +22,11 @@ class App extends Component {
       .catch(error => console.log(error));
   }
 
-  onChangeHandler = event => {
-    // Set the Filter in State
-    this.setState({ filter: event.target.value });
-  };
-
   render() {
-    const { robots, filter } = this.state;
-    // Compare the robots array and filter with state
+    const { robots } = this.state;
+    const { filter, onSearchChange } = this.props;
+
+    // Compare the robots array and filter with props
     const filteredSearch = robots.filter(robot => {
       return robot.name.toLowerCase().includes(filter.toLowerCase());
     });
@@ -37,7 +36,7 @@ class App extends Component {
     ) : (
       <div className="tc">
         <h1>RoboFriendz</h1>
-        <SearchBox filter={this.onChangeHandler} value={filter} />
+        <SearchBox filter={onSearchChange} value={filter} />
         <Scroll>
           <ErrorBoundary>
             <CardList robots={filteredSearch} />
@@ -48,4 +47,20 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    filter: state.filter,
+    robots: state.robots
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSearchChange: event => dispatch(actions.setSearchField(event.target.value))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

@@ -1,5 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import searchReducer from "./store/reducers";
 
 // CSS
 import "tachyons";
@@ -9,5 +12,15 @@ import "./index.css";
 import App from "./containers/App";
 import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+// Redux Store
+const store = createStore(searchReducer);
+
+// App
+const app = (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+ReactDOM.render(app, document.getElementById("root"));
 registerServiceWorker();
