@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CounterButton from './CounterButton';
+//import CounterButton from './CounterButton';
 
 class Header extends Component {
   // Just render this component once!
@@ -11,7 +11,7 @@ class Header extends Component {
     return (
       <div>
         <h1>RoboFriendz</h1>
-        <CounterButton color={'red'} />
+        {/* <CounterButton color={'red'} /> */}
       </div>
     );
   }
