@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import CardList from './CardList';
 
-// Shallow render to test card component only - no children
-it('expect to render card component', () => {
+// Shallow render to test CardList component only - no children
+it('expect to render CardList component', () => {
   // Mock some robots, yo
   const mockRobots = [
     {
