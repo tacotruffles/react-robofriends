@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const SearchBox = props => {
   const { filter } = props;
@@ -9,6 +9,7 @@ const SearchBox = props => {
         type="text"
         placeholder="Search..."
         onChange={filter}
+        aria-label="Search Robots"
       />
     </div>
   );
