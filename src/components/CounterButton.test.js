@@ -12,7 +12,14 @@ it('correct counter increment value', () => {
   const mockColor = 'red';
   const wrapper = shallow(<CounterButton color={mockColor} />);
 
+  // Check counter state
   wrapper.find('[id="counter"]').simulate('click');
   wrapper.find('[id="counter"]').simulate('click');
   expect(wrapper.state()).toEqual({ count: 2 });
+
+  wrapper.find('[id="counter"]').simulate('keypress');
+  expect(wrapper.state()).toEqual({ count: 2 });
+
+  // Check props - color = red
+  expect(wrapper.props().color).toEqual('red');
 });
