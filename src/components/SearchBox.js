@@ -5,7 +5,7 @@ const SearchBox = props => {
   return (
     <div>
       <input
-        className="pa3 mb4 ba b--green bg-lightest-blue"
+        className="pa3 mt4 mb4 ba b--green bg-lightest-blue"
         type="text"
         placeholder="Search..."
         onChange={filter}

@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
-import CardList from '../components/CardList';
-import SearchBox from '../components/SearchBox';
-import Scroll from '../hoc/Scroll';
-import ErrorBoundary from '../components/ErrorBoundary';
+import MainPage from '../components/MainPage';
 
 import { connect } from 'react-redux';
 import * as actions from '../store/actions';
@@ -12,30 +8,8 @@ import * as actions from '../store/actions';
 import './App.css';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.onRequestRobots();
-  }
   render() {
-    const { robots, loading, filter, onSearchChange } = this.props;
-
-    // Compare the robots array and filter with props
-    const filteredSearch = robots.filter(robot => {
-      return robot.name.toLowerCase().includes(filter.toLowerCase());
-    });
-
-    return loading ? (
-      <h1 className="tc">Loading</h1>
-    ) : (
-      <div className="tc">
-        <Header />
-        <SearchBox filter={onSearchChange} value={filter} />
-        <Scroll>
-          <ErrorBoundary>
-            <CardList robots={filteredSearch} />
-          </ErrorBoundary>
-        </Scroll>
-      </div>
-    );
+    return <MainPage {...this.props} />;
   }
 }
 
