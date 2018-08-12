@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  gandalf:
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
+      - run: "echo Hi from Gandalf!"
+  bilbo:
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - checkout
+      - run: "echo Hi from Bilbo!"
+workflows:
+  version: 2
+  lotr:
+    jobs:
+      - gandalf
+      - bilbo
+      
