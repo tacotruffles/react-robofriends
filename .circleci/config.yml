@@ -17,11 +17,11 @@ workflows:
   lotr:
     jobs:
       - gandalf
-          branches:
-            ignore:
-              - gh-pages
+#          branches:
+#            ignore:
+#              - gh-pages
       - bilbo
-          branches:
-            ignore:
-              - gh-pages
+#          branches:
+#            ignore:
+#              - gh-pages
       
