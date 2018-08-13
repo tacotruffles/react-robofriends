@@ -15,7 +15,7 @@ jobs:
       - checkout
       - run: "echo unit tests"
       - run: yarn install
-      - run: yarn test -- --build
+      - run: yarn test -- --coverage
   endofline: 
     docker:
       - image: circleci/node:8.11.3
