@@ -1,27 +1,42 @@
 version: 2
 jobs:
-  gandalf:
+  build:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:8.11.3
     steps:
       - checkout
-      - run: "echo Hi from Gandalf!"
-  bilbo:
+      - run: "echo yarn installing"
+      - run: yarn install
+      - run: CI=true yarn build
+  test:
     docker:
-      - image: circleci/ruby:2.4.1
+      - image: circleci/node:8.11.3
     steps:
       - checkout
-      - run: "echo Hi from Bilbo!"
+      - run: "echo unit tests"
+      - run: yarn install
+      - run: yarn test -- --coverage
+  endofline: 
+    docker:
+      - image: circleci/node:8.11.3
+    steps:
+      - checkout
+      - run: "echo END OF LINE"
+
 workflows:
+
   version: 2
-  lotr:
+  build_test_EOL:
     jobs:
-      - gandalf
+      - build
 #          branches:
 #            ignore:
 #              - gh-pages
-      - bilbo
+      - endofline
 #          branches:
 #            ignore:
 #              - gh-pages
+      - test:
+          requires:
+              - endofline
       
